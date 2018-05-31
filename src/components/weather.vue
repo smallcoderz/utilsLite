@@ -180,7 +180,7 @@ export default {
     text-align: right;
     padding: 15px 30px 0 0;
 }
-.weather_logo span{
+.weather_logo .iconfont{
     font-size: 55px;
     vertical-align: top;
 }
