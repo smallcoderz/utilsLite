@@ -24,12 +24,12 @@
             </view>
 
             <view class="daybox">
-                <view class="day" v-if="weeks[index]>0"></view>
-                <view class="day" v-if="weeks[index]>1"></view>
-                <view class="day" v-if="weeks[index]>2"></view>
-                <view class="day" v-if="weeks[index]>3"></view>
-                <view class="day" v-if="weeks[index]>4"></view>
-                <view class="day" v-if="weeks[index]>5"></view>
+                <view class="day" v-if="week>0"></view>
+                <view class="day" v-if="week>1"></view>
+                <view class="day" v-if="week>2"></view>
+                <view class="day" v-if="week>3"></view>
+                <view class="day" v-if="week>4"></view>
+                <view class="day" v-if="week>5"></view>
 
                 <span v-for="(item,idx) in list" :key="idx">
                    <span
@@ -65,7 +65,7 @@
                 date: [],
                 currentDate: '2018.5.1',
                 showDate: '',
-                weeks: '',
+                week: '',
                 year: '', // 当年
                 month: '', // 当月
                 day: '' // 当天
@@ -97,10 +97,11 @@
                 this.year = curYear; //当前年
                 this.month = curMonth; //当cue前月份
                 this.day = curDay; //当天
-//              let week = date.getDay() // 当天星期几
-                let weeks = [];
                 let d = new Date(year, month, 0);
+                let d1 = new Date(year, month-1, day);
                 let daysCount = d.getDate() + 1; // 一共显示多少天
+                let week = d1.getDay() // 星期几
+                this.week = week;
                 let dayscNow = 0; // 计数器
                 let leapYear = function (Year) { // 判断是否闰年
                     if (((Year % 4) === 0) && ((Year % 100) !== 0) || ((Year % 400) === 0)) {
@@ -129,11 +130,6 @@
                             nongli: Nonglu.solar2lunar(year, month, k + 1)
                         }
                         dataMonth.push(nowData);
-                        if (k === 0) {
-                            let date = new Date(year + '-' + month + '-' + k + 1);
-                            let weekss = date.getDay(year,month-1,0);// 获取每个月第一天是周几
-                            weeks.push(weekss)
-                        }
                     } else {
                         break
                     }
@@ -145,7 +141,6 @@
                     }
                 }
                 this.date = dataAll2;
-                this.weeks = weeks;
             },
             bindDateChange(e) { //选择日期
                 let curDate = e.mp.detail.value;
