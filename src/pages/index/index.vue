@@ -67,7 +67,7 @@ export default {
     toCompassTap () { // 跳转到指南针页面
       wx.navigateTo({url: '../compass/compass'})
     },
-    toCalendarTap () { // 跳转到指南针页面
+    toCalendarTap () { // 跳转到日历页面
       wx.navigateTo({url: '../calendar/calendar'})
     },
     getUserInfo () {

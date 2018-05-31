@@ -39,11 +39,11 @@ export default {
     /* project id 616773 */
     @font-face {
         font-family: 'iconfont';
-        src: url('//at.alicdn.com/t/font_616773_mtljvcoixbeasjor.eot');
-        src: url('//at.alicdn.com/t/font_616773_mtljvcoixbeasjor.eot?#iefix') format('embedded-opentype'),
-        url('//at.alicdn.com/t/font_616773_mtljvcoixbeasjor.woff') format('woff'),
-        url('//at.alicdn.com/t/font_616773_mtljvcoixbeasjor.ttf') format('truetype'),
-        url('//at.alicdn.com/t/font_616773_mtljvcoixbeasjor.svg#iconfont') format('svg');
+        src: url('//at.alicdn.com/t/font_616773_9vfsy5y5unb3xr.eot');
+        src: url('//at.alicdn.com/t/font_616773_9vfsy5y5unb3xr.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_616773_9vfsy5y5unb3xr.woff') format('woff'),
+        url('//at.alicdn.com/t/font_616773_9vfsy5y5unb3xr.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_616773_9vfsy5y5unb3xr.svg#iconfont') format('svg');
     }
 
     .clear::after {
@@ -67,6 +67,10 @@ export default {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
+
+    .icon-right:before { content: "\e6a7"; }
+
+    .icon-left:before { content: "\e697"; }
 
     .icon-iconfonterweima:before { content: "\e620"; }
 
