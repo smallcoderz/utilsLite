@@ -131,7 +131,7 @@
                         dataMonth.push(nowData);
                         if (k === 0) {
                             let date = new Date(year + '-' + month + '-' + k + 1);
-                            let weekss = date.getDay();// 获取每个月第一天是周几
+                            let weekss = date.getDay(year,month-1,0);// 获取每个月第一天是周几
                             weeks.push(weekss)
                         }
                     } else {
