@@ -26,8 +26,9 @@
               <view class="flex-item">
                   <span class="iconfont icon-wc"></span>
               </view>
-              <view class="flex-item">
-                  <span class="iconfont icon-qingtian"></span>
+              <view class="flex-item avatarBox">
+                  <img class="avatarImg" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
+                  <!--<span class="iconfont icon-qingtian"></span>-->
               </view>
               <view class="flex-item">
                   <span class="iconfont icon-gongjiao"></span>
@@ -127,6 +128,18 @@ export default {
     font-size: 45px;
     color: #fff;
     line-height: 95px;
+}
+.avatarBox{
+    background-color: #fdfdfd;
+    border-right: 20px solid #fdfdfd;
+    border-bottom: 20px solid #fdfdfd;
+    border-radius: 100%;
+}
+.avatarImg{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #14142C;
+    border-radius: 100%;
 }
 .color_arr{
     color: #4690ff;
