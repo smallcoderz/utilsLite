@@ -4,6 +4,25 @@
  * @Version 1.0.3
  * @公历转农历：calendar.solar2lunar(1987,11,01); //[you can ignore params of prefix 0]
  * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
+ *
+ (Number)lYear : 农历年
+ (Number)lMonth : 农历月
+ (Number)lDay : 农历日
+ (String)monthCn : 农历月中文名称，如果为闰月，则会在月份前增加 闰 字
+ (String)dayCn : 农历日中文名称
+ (String)animal : 生肖
+ (String)gzYear : 年的农历叫法（干支）
+ (String)gzMonth : 月的农历叫法（干支）
+ (String)gzDay : 日的农历叫法(干支)
+ (Number)cYear : 公历年
+ (Number)cMonth : 公历月
+ (Number)cDay : 公历日
+ (Number)nWeek : 周几
+ (String)ncWeek : 中文周几
+ (Boolean)isLeap : 是否是闰月
+ (Boolean)isToday : 是否是今天
+ (Boolean)isTerm : 是否有节气
+ (String)term : 节气，如果没有则返回空字符串
  */
 var calendar = {
 

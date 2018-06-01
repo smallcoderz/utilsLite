@@ -115,7 +115,7 @@ export default {
     width: 33.3%;
     text-align: center;
     background-color: #14142C;
-    opacity: 0.8;
+    /*opacity: 0.8;*/
     border-right: 20px solid #fdfdfd;
     border-bottom: 20px solid #fdfdfd;
     border-radius: 100%;
