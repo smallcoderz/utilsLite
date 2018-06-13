@@ -9,7 +9,7 @@ export default {
         navigationBarBackgroundColor: '#fdfdfd',
         navigationBarTitleText: '搬券大师',
         navigationBarTextStyle: 'black',
-        enablePullDownRefresh:true, //下拉刷新
+        // enablePullDownRefresh:true, //下拉刷新
     }
 
 }
