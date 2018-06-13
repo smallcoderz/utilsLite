@@ -6,8 +6,8 @@
             </div>
             <div class="searchFeature">
                 <span class="backBtn" @tap="backHome"></span>
-                <input type="text" class="searchInput">
-                <button class="searchBtn">搜索</button>
+                <input type="text" class="searchInput" v-model="searchName">
+                <button class="searchBtn" @tap="searchTap">搜索</button>
             </div>
         </div>
         <div class="content">
@@ -40,6 +40,7 @@
         data () {
             return {
                 swiperDate:[],
+                searchName:'',
             }
         },
         components: {},
@@ -47,6 +48,9 @@
         methods: {
             backHome(){ //返回主页
                 this.$emit('closeSearchPage')
+            },
+            searchTap(){
+                this.$emit('searchInfo',this.searchName)
             }
         },
         onLoad () {

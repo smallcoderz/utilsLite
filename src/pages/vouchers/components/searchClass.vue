@@ -7,7 +7,7 @@
             </span>
         </div>
         <div class="classItem clear">
-            <div class="item" v-for="list in classList" :key="list">
+            <div class="item" v-for="list in classList" :key="list" @tap="searchClassInfo(list.value)">
                 <image class="itemImg" :src=list.path></image>
                 <span v-text="list.name"></span>
             </div>
@@ -23,45 +23,59 @@
                     {
                         path:'http://www.00sg.com/img/cat1.png',
                         name: '女装',
+                        value:1,
                     },{
                         path:'http://www.00sg.com/img/cat2.png',
                         name: '男装',
+                        value:2,
                     },{
                         path:'http://www.00sg.com/img/cat3.png',
                         name: '鞋品',
+                        value:3,
                     },{
                         path:'http://www.00sg.com/img/cat4.png',
                         name: '箱包',
+                        value:4,
                     },{
                         path:'http://www.00sg.com/img/cat5.png',
                         name: '母婴',
+                        value:5,
                     },{
                         path:'http://www.00sg.com/img/cat6.png',
                         name: '美妆',
+                        value:6,
                     },{
                         path:'http://www.00sg.com/img/cat7.png',
                         name: '内衣',
+                        value:7,
                     },{
                         path:'http://www.00sg.com/img/cat8.png',
                         name: '配饰',
+                        value:8,
                     },{
                         path:'http://www.00sg.com/img/cat9.png',
                         name: '美食',
+                        value:9,
                     },{
                         path:'http://www.00sg.com/img/cat10.png',
                         name: '数码家电',
+                        value:10,
                     },{
                         path:'http://www.00sg.com/img/cat11.png',
                         name: '居家日用',
+                        value:11,
                     },{
                         path:'http://www.00sg.com/img/cat12.png',
                         name: '家装家纺',
+                        value:12,
                     },{
                         path:'http://www.00sg.com/img/cat13.png',
                         name: '文娱车品',
+                        value:13,
                     },{
                         path:'http://www.00sg.com/img/cat14.png',
                         name: '户外运动',
+                        value:14,
                     },
                 ]
             }
@@ -71,6 +85,9 @@
         methods: {
             backHome(){ //返回主页
                 this.$emit('closeSearchClass')
+            },
+            searchClassInfo(val){
+                this.$emit('searchClassInfo',val)
             }
         },
         onLoad () {

@@ -3,20 +3,21 @@
 
         <!-- 搜索页面组件 -->
         <div class="searchPageBox" :class="{height100 : searchPageIsShow}">
-            <SearchPage @closeSearchPage="closeSearchPage"></SearchPage>
+            <SearchPage @closeSearchPage="closeSearchPage" @searchInfo="searchInfo"></SearchPage>
         </div>
 
         <!--商品分类组件-->
         <div class="searchClassBox" :class="{height100 : searchClassIsShow}" @touchmove="catchtouchmove">
             <div class="topTitle" @tap="showSearchClass"></div>
-            <SearchClass @closeSearchClass="closeSearchClass"></SearchClass>
+            <SearchClass @closeSearchClass="closeSearchClass" @searchClassInfo="searchClassInfo"></SearchClass>
         </div>
 
         <div class="searchTitle clear">
             <span class="main-logo fl">搬券大师</span>
             <div class="fl searchBox">
                 <icon class="searchIcon" type="search" size="14"/>
-                <div class="searchInput" @tap="showSearchPage">来搜一搜吧，海量优惠</div>
+                <div class="searchInput" @tap="showSearchPage" v-if="!param.q">来搜一搜吧，海量优惠</div>
+                <div class="searchInput" @tap="showSearchPage" v-if="param.q" v-text="param.q"></div>
             </div>
 
             <!--商品分类-->
@@ -96,9 +97,10 @@
         computed: {},
         methods: {
             initialize(request){
-                for(name in request){
-                    if(!request[name]){
-                        delete request[name];
+                request.page = this.page;
+                for(let keyName in request){
+                    if(!request[keyName]){
+                        delete request[keyName];
                     }
                 }
                 wx.request({
@@ -113,7 +115,6 @@
                             }else {
                                 this.merchDate = this.merchDate.concat(res.data.data.goods);
                             }
-                            console.log('123123',this.merchDate.length)
                             this.page = res.data.data.next_page;
                         }
                     }
@@ -136,6 +137,20 @@
                      }
                  })
             },
+            reset(){
+                this.param = {
+                    m: 'shop.goods.search',
+                    q:'', //关键字
+                    c:'', //商品类目 1.女装、2.男装、3.鞋品、4.箱包、5.母婴、6.美妆、7.内衣、8.配饰、9.美食、10.数码家电、11.居家日用、12.家装家纺、13.文娱车品、14.户外运动
+                    page:'', //页数
+                    sort:'', //排序方式 1.销量从高到低；2.价格从低到高；3.价格从高到低；
+                    start_price:'', //价格区间起始值
+                    end_price:'', //价格区间结束值
+                    is_hy:'', //有此参数表示限定为海外购
+                    is_tm:'', //有此参数表示限定为天猫
+                    is_by:'', //有此参数表示限定为包邮
+                }
+            },
             showSearchPage(){ //显示搜索页面
                 this.searchPageIsShow = !this.searchPageIsShow;
                 this.isNoscroll = !this.isNoscroll;
@@ -152,14 +167,27 @@
             },
             onPullUp(){ //上拉刷新
                 if(!this.isLoad){
-                    this.param.page = this.page;
                     this.initialize(this.param); // 搜索
                 }
                 this.isLoad = true;
             },
             catchtouchmove(){
 
-            }
+            },
+            searchInfo(val){ //点击搜索
+                this.reset();
+                this.param.q = val;
+                this.page = 1;
+                this.initialize(this.param);
+                this.showSearchPage();
+            },
+            searchClassInfo(val){ //点击搜索
+                this.reset();
+                this.param.c = val;
+                this.page = 1;
+                this.initialize(this.param);
+                this.showSearchClass();
+            },
         },
         onLoad () {
 
@@ -168,7 +196,6 @@
 
         },
         created () {
-            this.param.page = this.page;
             this.initialize(this.param); // 搜索
             this.getViewpagerDate(); //获取轮播图数据
         },
