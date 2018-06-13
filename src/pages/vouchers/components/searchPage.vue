@@ -51,7 +51,19 @@
             },
             searchTap(){
                 this.$emit('searchInfo',this.searchName)
-            }
+            },
+            getKeyword(){  //获取关键字数据
+                wx.request({
+                    url: 'https://wxapp.00sg.com/api/router?m=shop.goods.keyword',
+                    data: {},
+                    success: (res) => {
+                        console.log('关键字数据',res)
+                        if(res.data.ok){
+                            this.swiperDate = res.data.lunbo;
+                        }
+                    }
+                })
+            },
         },
         onLoad () {
 

@@ -42,7 +42,7 @@
                     <div class="title"></div>
                 </div>
                 <div class="merchandiseItemBox clear">
-                    <view class="merchandiseItem" v-for="list in merchDate" :key="list">
+                    <view class="merchandiseItem" v-for="list in merchDate" :key="list" @tap="toDetailTap(list.num_iid)">
                         <div class="imgInfo">
                             <image mode="aspectFix" class="image" :src=list.pict_url ></image>
                         </div>
@@ -137,7 +137,7 @@
                      }
                  })
             },
-            reset(){
+            reset(){ //重置参数
                 this.param = {
                     m: 'shop.goods.search',
                     q:'', //关键字
@@ -174,20 +174,23 @@
             catchtouchmove(){
 
             },
-            searchInfo(val){ //点击搜索
-                this.reset();
+            searchInfo(val){ //模糊搜索
+                this.reset()
                 this.param.q = val;
                 this.page = 1;
                 this.initialize(this.param);
                 this.showSearchPage();
             },
-            searchClassInfo(val){ //点击搜索
+            searchClassInfo(val){ //点击分类搜索
                 this.reset();
                 this.param.c = val;
                 this.page = 1;
                 this.initialize(this.param);
                 this.showSearchClass();
             },
+            toDetailTap(val){ //进入详情页面
+                wx.navigateTo({url: '../merchdetail/merchdetail?id=' + val})
+            }
         },
         onLoad () {
 
