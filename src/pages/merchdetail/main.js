@@ -9,6 +9,7 @@ export default {
         navigationBarBackgroundColor: '#fdfdfd',
         navigationBarTitleText: '搬券大师',
         navigationBarTextStyle: 'black',
+        disableScroll: true,
     }
 
 }
