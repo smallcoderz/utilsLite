@@ -1,5 +1,5 @@
 <template style="width:100%;height: 100%;">
-    <div class="page hidden">
+    <scroll-view class="page" :scroll-y="!isShowMask">
         <div class="content">
             <div class="headerImgBox">
                 <image class="headerImg" mode="aspectFix" :src=detailDate.pict_url ></image>
@@ -38,7 +38,7 @@
 
             <!--图文详情-->
             <div class="textImgDetail clear">
-                <div class="toggleTuWen" @tap="isShowTuWen=!isShowTuWen">
+                <div class="toggleTuWen" @tap="toggleTuwenFn">
                     <span class="text">查看图文详情</span>
                     <div class="fr unfoldBtn">
                         点击展开<i class="rightIcon" :class="{todown:isShowTuWen}"></i>
@@ -84,14 +84,42 @@
         </div>
 
         <div class="footerBox clear">
-            <div class="shareBtn fl">
+            <div class="shareBtn fl" @tap="toggleCopyFn">
                 <i class="buyIcon"></i>
                 分享
             </div>
+
+            <!--todo 暂时隐藏 个人觉得可以省略这一步-->
+            <!--<div class="share" :class="{fadeinup:isShowTuWen}">-->
+                <!--<i class="shareIcon"></i>-->
+                <!--通过口令分享-->
+            <!--</div>-->
+
             <div class="purchaseBtn fl">领券购买</div>
         </div>
-        <div class="maskingBox"></div>
-    </div>
+
+        <!--弹出层-->
+        <div class="modalBox" :class="{modalboxshow:isShowCopy}">
+            <div class="body">
+                <div class="title">
+                    复制分享信息
+                </div>
+                <div class="content">
+                    {{detailDate.title}} <br>
+                    【原价】{{detailDate.zk_final_price}}元<br>
+                    【券后】{{detailDate.coupon_final_price}}元<br>
+                    【复制此信息打开手机淘宝即可查看并下单】<br>
+                    {{detailDate.tkl}}
+                </div>
+                <p class="text">长按文字区域手动复制淘口令</p>
+                <div class="footer" @tap="copyText" :class="{textsuccess:copySuccess}">
+                    一键复制
+                </div>
+            </div>
+        </div>
+
+        <div class="masking" :class="{maskingin:isShowMask,maskingout:!isShowMask}"></div>
+    </scroll-view>
 </template>
 
 <script>
@@ -105,7 +133,10 @@
                 detailDate:{}, //商品详情
                 recommendDate:[], //推荐商品
                 tuwenData:[], //图文信息
-                isShowTuWen: false,
+                isShowMask: false, //是否显示蒙板
+                isShowTuWen: false, //是否显示图文信息
+                isShowCopy: false, //是否显示复制面板
+                copySuccess:false,
             }
         },
         components: {
@@ -159,12 +190,36 @@
                     }
                 })
             },
+            toggleTuwenFn(){ //是否显示图文详情
+                this.isShowTuWen = !this.isShowTuWen;
+            },
+            toggleCopyFn(){ //是否显示复制面板
+                this.isShowCopy = !this.isShowCopy;
+                this.isShowMask = this.isShowCopy;
+            },
             updateDate(id){ //点击商品展示详情
                 this.recommendDate = [];
                 this.params.id = id;
                 this.initialize(this.params);
                 this.getRecommend();
                 this.getShowTuwenData(id);
+            },
+            copyText(){ // 一键复制
+                wx.setClipboardData({
+                    data: this.detailDate.tkl,
+                    success: (res) => {
+                        this.copySuccess = true;
+                        wx.showToast({
+                            title: '复制成功！'
+                        });
+                    },
+                })
+            },
+            maskShow(){ //显示蒙板
+                this.isShowMask = true;
+            },
+            maskHide(){ //关闭蒙板
+                this.isShowMask = false;
             }
 
         },
@@ -472,6 +527,7 @@
         color: #666;
         background-color: #fff;
         font-size: 12px;
+        position: relative;
     }
     .footerBox .shareBtn .buyIcon{
         display: block;
@@ -481,25 +537,156 @@
         background: url(http://www.00sg.com/img/share.svg) no-repeat center center;
         background-size: 50% auto;
     }
+    .footerBox .share{
+        width: 95%;
+        left: 2.5%;
+        line-height: 50px;
+        height: 50px;
+        text-align: center;
+        color: #666;
+        display: block;
+        font-size: 16px;
+        background-color: #fff;
+        position: absolute;
+        top: 100%;
+        border-radius: 5px;
+        z-index: 99;
+    }
+    .footerBox .share:before{
+        content: '';
+        position: absolute;
+        left: 5%;
+        bottom: -10px;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-top: 12px solid #fff;
+    }
+    .footerBox .shareIcon{
+        width: 20px;
+        height: 20px;
+        top: 5px;
+        right: 5px;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        background: url(http://www.00sg.com/img/buy_fx_code.svg) center center no-repeat;
+        background-size: 100% 100%;
+    }
     .footerBox .purchaseBtn{
         width: 60%;
         background-color: #FE4A65;
         color: #fff;
     }
-    /*蒙板*/
-    .maskingBox{
-        /*width: 100%;*/
-        /*height: 100%;*/
-        /*position: fixed;*/
-        /*top: 0;*/
-        /*left: 0;*/
-        /*background-color: #000;*/
-        /*opacity: 0.7;*/
-        /*z-index: 90;*/
+    /*弹出层*/
+    .modalBox{
+        width: 90%;
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        top: 10%;
+        left: 5%;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 5px;
+        font-weight: 300;
+        box-sizing: border-box;
+        z-index: 99;
+        transition: opacity 0.5s;
     }
-    .hidden {
+    .modalBox .body{
         width: 100%;
         height: 100%;
-        /*overflow: hidden !important;*/
+        box-sizing: border-box;
+        padding: 0 15px 15px 15px;
+    }
+    .modalboxshow{
+        height: 70%;
+        opacity: 1;
+    }
+    .modalBox .title{
+        text-align: center;
+        background: linear-gradient(to right, #FD65EA, #FFBF63);
+        -webkit-background-clip: text;
+        color: transparent;
+        font-size: 20px;
+        padding: 10px 0;
+    }
+    .modalBox .content{
+        padding: 15px;
+        box-sizing: border-box;
+        background: #F1F1F1;
+        color: #333;
+        font-size: 18px;
+        line-height: 24px;
+        height: 260px;
+        border-radius: 4px;
+        overflow: hidden
+    }
+    .modalBox .text{
+        line-height: 28px;
+        color: #AAA;
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+    .modalBox .footer{
+        display: block;
+        border-radius: 50px;
+        line-height: 40px;
+        height: 40px;
+        background-color: #FE4A65;
+        text-align: center;
+        color: #fff;
+        font-size: 16px;
+    }
+    .textsuccess{
+        background-color: #1FB931 !important;
+    }
+    /*蒙板*/
+    .masking{
+        width: 100%;
+        height: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #000;
+        z-index: 90;
+        transition:opacity 0.5s;
+    }
+    .maskingin{
+        opacity: 0.7;
+        height: 100%;
+    }
+    .maskingout{
+        opacity: 0;
+    }
+    .fadeinup{
+        animation:fade-in-up 0.5s ease-in-out forwards;
+    }
+    .fadeindown{
+        animation:fade-in-down 0.5s ease-in-out forwards;
+    }
+
+    /*动画*/
+    @keyframes fade-in-up {
+        0% {
+            top:100%
+        }
+        70% {
+            top:-170%
+        }
+        100% {
+            top:-150%;
+        }
+    }
+    /*动画*/
+    @keyframes fade-in-down {
+        0% {
+            top:-150%
+        }
+        100% {
+            top:100%
+        }
     }
 </style>
