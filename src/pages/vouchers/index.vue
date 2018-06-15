@@ -3,7 +3,7 @@
 
         <!-- 搜索页面组件 -->
         <div class="searchPageBox" :class="{height100 : searchPageIsShow}">
-            <SearchPage @closeSearchPage="closeSearchPage" @searchInfo="searchInfo"></SearchPage>
+            <SearchPage @closeSearchPage="closeSearchPage" @searchInfo="searchInfo" :hotkeydata="hotkey"></SearchPage>
         </div>
 
         <!--商品分类组件-->
@@ -31,7 +31,7 @@
             <swiper indicator-dots="true" autoplay="true">
                 <div v-for="list in swiperDate" :key="list">
                     <swiper-item>
-                        <image class="compassbg slide-image" :src=list></image>
+                        <image class="compassbg slide-image" :src=list.img></image>
                     </swiper-item>
                 </div>
             </swiper>
@@ -88,6 +88,7 @@
                     is_by:'', //有此参数表示限定为包邮
                 },
                 isLoad: false,
+                hotkey: [],
             }
         },
         components: {
@@ -121,18 +122,14 @@
                 })
             },
             getViewpagerDate(){  //获取轮播图
-//                let res = {"ok":true,"code":100,"lunbo":["http:\/\/www.00sg.com\/ad\/01.jpg","http:\/\/www.00sg.com\/ad\/01.jpg","http:\/\/www.00sg.com\/ad\/02.jpg","http:\/\/www.00sg.com\/ad\/03.jpg","http:\/\/www.00sg.com\/ad\/04.jpg","http:\/\/www.00sg.com\/ad\/05.jpg"]};
-//                console.log('res',res);
-//                if(res.ok){
-//                    this.swiperDate = res.lunbo;
-//                }
                  wx.request({
-                     url: 'https://wxapp.00sg.com/api/router?m=shop.pub.ad',
+                     url: 'https://wxapp.00sg.com/api/router?m=shop.pub.data',
                      data: {},
                      success: (res) => {
                          console.log('轮播图',res)
                          if(res.data.ok){
                              this.swiperDate = res.data.lunbo;
+                             this.hotkey = res.data.hotkey;
                          }
                      }
                  })

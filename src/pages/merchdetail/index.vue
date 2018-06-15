@@ -95,7 +95,7 @@
                 <!--通过口令分享-->
             <!--</div>-->
 
-            <div class="purchaseBtn fl">领券购买</div>
+            <div class="purchaseBtn fl" @tap="purchaseFn">领券购买</div>
         </div>
 
         <!--弹出层-->
@@ -196,6 +196,7 @@
             toggleCopyFn(){ //是否显示复制面板
                 this.isShowCopy = !this.isShowCopy;
                 this.isShowMask = this.isShowCopy;
+                rhis.copySuccess = false;
             },
             updateDate(id){ //点击商品展示详情
                 this.recommendDate = [];
@@ -210,7 +211,17 @@
                     success: (res) => {
                         this.copySuccess = true;
                         wx.showToast({
-                            title: '复制成功！'
+                            title: '打开淘宝APP即可'
+                        });
+                    },
+                })
+            },
+            purchaseFn(){ //领券购买
+                wx.setClipboardData({
+                    data: this.detailDate.tkl,
+                    success: (res) => {
+                        wx.showToast({
+                            title: '打开淘宝APP即可！'
                         });
                     },
                 })
@@ -392,7 +403,7 @@
         height: 25px;
         width: 20px;
         float: right;
-        transition: 0.5s;
+        transition: 0.3s;
     }
     .todown{
         transform: rotate(90deg);
@@ -585,15 +596,20 @@
         height: 0;
         opacity: 0;
         overflow: hidden;
-        top: 10%;
-        left: 5%;
-        position: absolute;
+        /*top: 10%;*/
+        /*left: 5%;*/
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        position: fixed;
         background-color: #fff;
         border-radius: 5px;
         font-weight: 300;
         box-sizing: border-box;
         z-index: 99;
-        transition: opacity 0.5s;
+        transition: opacity 0.3s;
     }
     .modalBox .body{
         width: 100%;
@@ -652,7 +668,7 @@
         left: 0;
         background-color: #000;
         z-index: 90;
-        transition:opacity 0.5s;
+        transition:opacity 0.3s;
     }
     .maskingin{
         opacity: 0.7;
@@ -662,10 +678,10 @@
         opacity: 0;
     }
     .fadeinup{
-        animation:fade-in-up 0.5s ease-in-out forwards;
+        animation:fade-in-up 0.3s ease-in-out forwards;
     }
     .fadeindown{
-        animation:fade-in-down 0.5s ease-in-out forwards;
+        animation:fade-in-down 0.3s ease-in-out forwards;
     }
 
     /*动画*/

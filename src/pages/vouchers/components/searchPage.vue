@@ -14,29 +14,22 @@
             <div class="searchClass">
                 <p class="title">热门搜索</p>
                 <div class="clear">
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
-                    <span class="item">口红</span>
+                    <span class="item" v-for="list in hotkeydata" :key="list" v-text="list" @tap="searchHotkey(list)"></span>
                 </div>
             </div>
-            <div class="searchClass">
-                <p class="title">热门搜索</p>
-                <div class="clear">
-                    <span class="item">口红</span>
-                </div>
-            </div>
+            <!--<div class="searchClass">-->
+                <!--<p class="title">热门搜索</p>-->
+                <!--<div class="clear">-->
+                    <!--<span class="item">口红</span>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        props:['hotkeydata'],
         data () {
             return {
                 swiperDate:[],
@@ -64,6 +57,9 @@
                     }
                 })
             },
+            searchHotkey(val){ //点击关键字搜索
+                this.$emit('searchInfo',val)
+            }
         },
         onLoad () {
 
