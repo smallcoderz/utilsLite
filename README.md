@@ -16,7 +16,7 @@ $ npm -v
 ```
 5.6.0
 
-# 2. 由于众所周知的原因，可以考虑切换源为 taobao 源
+#### 2. 由于众所周知的原因，可以考虑切换源为 taobao 源
 ```
 $ npm set registry https://registry.npm.taobao.org/
 ```
