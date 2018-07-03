@@ -2,7 +2,7 @@
 
 基于 mpVue 开发的小程序  http://mpvue.com/
 依赖 Node.js 环境
-如果没有的话，请先下载 [node.js](https://nodejs.org/" node.js"){:target="_blank"} 并安装
+如果没有的话，请先下载 [node.js](https://nodejs.org/){:target="_blank"} 并安装
 
 打开命令行工具：
 #### 1. 先检查下 Node.js 是否安装成功
