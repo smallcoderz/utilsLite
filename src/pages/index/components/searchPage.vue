@@ -47,7 +47,7 @@
             },
             getKeyword(){  //获取关键字数据
                 wx.request({
-                    url: 'https://wxapp.00sg.com/api/router?m=shop.goods.keyword',
+                    url: 'https://www.00sg.com/u/wxapp/api/router?m=shop.goods.keyword',
                     data: {},
                     success: (res) => {
                         console.log('关键字数据',res)

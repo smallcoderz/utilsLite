@@ -146,7 +146,7 @@
         methods: {
             initialize(request){ //获取商品详情信息
                 wx.request({
-                    url: 'https://wxapp.00sg.com/api/router',
+                    url: 'https://www.00sg.com/u/wxapp/api/router',
                     data: request,
                     success: (res) => {
                         console.log('商品详情数据',JSON.parse(JSON.stringify(res)))
@@ -162,7 +162,7 @@
                     id: this.params.id,
                 };
                 wx.request({
-                    url: 'https://wxapp.00sg.com/api/router',
+                    url: 'https://www.00sg.com/u/wxapp/api/router',
                     data: data,
                     success: (res) => {
                         console.log('获取推荐商品',JSON.parse(JSON.stringify(res)))
