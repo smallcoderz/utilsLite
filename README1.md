@@ -29,29 +29,28 @@
  - 步骤1：将UAT和VER测试通过并要求发版的对应需求的功能分支与bug分支都合并到master分支
  - （注意：未通过UAT和VER测试的分支、不需要发版的分支都绝对不能合并到master分支）
 
-## 7，打包UAT升级包
- - 步骤1：登录http://mtdsuat.oppein.com  组织：mtds.oppein.com 用户名：admin，密码111111
- - 步骤2：打开左边系统菜单->系统管理->字典管理->系统版本->移动端Phone版本,然后点击修改按钮：
+## 7，UAT打包
+ - 步骤1：hbuilder打开manifest.json文件，记录版本号（如0.0.1）
+ - 步骤2：选中UAT目录按鼠标右键或hbuilder找到菜单：
+ -       （1）小版本：发行->制作移动App资源升级包
+ -       （2）大版本(需重新下载全量包)：发行->原生APP-云打包，具体参数细节请看文中的打包注意事项
+ - 步骤3：将生成的文件重命名为 mui_template_login.wgt
+ - 步骤4：打开左边系统菜单->系统管理->字典管理->系统版本->移动端Phone版本,然后点击修改按钮：
  -       （1）小版本：在备注框中仅需修改字符串参数"Mark":"*"，*为app代码文件manifest.json的版本号，*改为+1，如1.2.34改为1.2.35
  -       （2）大版本(需重新下载全量包)：在备注框中同时修改字符串"Mark":"*"和"downloadMark":"*"
- - 步骤3：在hbuilder中打开目录UAT的代码（前提是你要测试的分支已经合并到UAT分支）,修改manifest.json的版本号为步骤2的1.2.35
- - 步骤4：选中UAT目录按鼠标右键或hbuilder找到菜单：
- -       （1）小版本：发行->制作移动App资源升级包
- -            UAT 将生成的文件重命名为 mui_template_login.wgt
- -            VER 将生成的文件重命名为 oppein-mtds-app-ver.wgt
- -            PRO 将生成的文件重命名为 mui_template_login.wgt
- -       （2）大版本(需重新下载全量包)：发行->原生APP-云打包，具体参数细节请看文中的打包注意事项
- - 步骤5：打开ossbrowser软件（下载地址：https://github.com/aliyun/oss-browser 用Id=LTAIFBiMxe7OkNEi  Key=cFcQhtxx3XHdOGGXdY4Dl4crGrkQqv 登录）
- - 步骤6：上传mui_template_login.wgt文件至目录oss://opyx-mtds-test/AppInstallVersion/WGT/Phone_SheJi，上传完毕将覆盖原文件mui_template_login.wgt
+ - 步骤5：打开ossbrowser软件（下载地址：https://github.com/aliyun/oss-browser 登录账号找运维）。
+ - 步骤6：上传更新文件至目录oss://opyx-mtds-test/AppInstallVersion/WGT/Phone_SheJi，上传完毕将覆盖原文件。
  - 步骤7：确定步骤6上传完成后，回到http://mtdsuat.oppein.com系统菜单->系统管理->刷新字典缓存，点击刷新字典缓存。
- - 步骤8：在UAT的app收到升级提示，升级后查看你的测试分支是否在app中。是的话修改TAPD任务为已解决或已完成转给测试人员，不是的话再重新合并代码后再重新步骤1。
+ - 步骤8：小版本更新为静默更新，请确保正确更新再通知测试人员！
 
-## 8，打包VER包步骤与以上序号7是一样的
- - 登录：https://mtdsver.oppein.com  组织：mtds.oppein.com 用户名：admin，密码111111
+## 8，VER打包(同第7条)
+ - 步骤3：将生成的文件重命名为 oppein-mtds-app-ver.wgt
+ - 登录：https://mtdsver.oppein.com  组织：oppein.com 用户名：opAdmin，密码111111
  - 升级包上传目录：oss://opyx-mtds-pro/AppInstallVersion/WGT/Phone_SheJi_ver
 
-## 9，打包生产包步骤与以上序号7是一样的
- - 登录：http://mtds.oppein.com  组织：mtds.oppein.com 用户名：admin，密码6QfDX@Yh2GPPYFdC7rJ& 
+## 9，PRO打包(同第7条)
+ - 步骤3：将生成的文件重命名为 mui_template_login.wgt
+ - 登录：http://mtds.oppein.com  账号请找测试组
  - 升级包上传目录：oss://opyx-mtds-pro/AppInstallVersion/WGT/Phone_SheJi
 
 ## 10，各分支合并前请先拉取最新代码
@@ -229,16 +228,15 @@ mui.init({
 
 ## 蒲公英：
 * Uat环境：
-  * 账号：3368770016@qq.com
-  * 密码：Oppein_hxc@2017
+  * 账号：OPYX-XXZX01@oppein.com
+  * 密码：OPYX-XXZX01123
 
 * Ver环境：
-  * 账号：wupeng@oppein.com
-  * 密码：zhangjin
+  * 账号：OPYX-XXZX02@oppein.com
+  * 密码：OPYX-XXZX01124
 
 * Prod环境：
-  * 账号：179158282@qq.com
-  * 密码：ZK823423
+  * 请联系测试组
   
 ## Dcloud：
   * [Dcloud配置页面](http://dev.dcloud.net.cn)
@@ -269,22 +267,6 @@ mui.init({
   * AppSecret： XUFFxRVcFk6sTRvd9U8hB8
   * AppKey： evNafAjUBQ7mXhRL5ia194
   * MasterSecret： bsPThBMq8MAl1ATWnKp7Y6
-
-## 打升级包步骤
-* 安装hbuilder并且拉取所有最新代码
-* hbuilder打开代码文件夹并转换为移动项目
-* hbuilder打开manifest.json文件，记录版本号（如1.1.16）
-* 打开网站后台http://mtdsuat.oppein.com 登陆账号mtds.oppein.com  admin 111111  （uat）
-* 左边栏菜单找到 系统管理->字典管理
-* 字典中找到 系统版本->移动端Phone版本->修改->备注字段->json中的Mark字段（当前版本号）
-* 修改两处版本号（不兼容大版本号-功能版本号-bug修复版本号）往上+1，保持一致，保存！
-* hbuilder找到菜单：发行->制作移动App资源升级包，确定
-* 将生成的文件重命名为 mui_template_login.wgt 
-* 打开[oss软件](https://help.aliyun.com/document_detail/61872.html?spm=a2c4g.11186623.6.1122.kzkTCz) Id=LTAIFBiMxe7OkNEi  Key=cFcQhtxx3XHdOGGXdY4Dl4crGrkQqv
-* ps:发ver和pro升级包需要找黄沿箐（运维）
-* 找到opyx-mtds-test -> AppInstallVersion -> WGT -> Phone_SheJi
-* 将刚刚生成的升级包 mui_template_login.wgt 上传到此文件夹
-* 打开网站后台 左边菜单 -> 系统管理 -> 刷新字典缓存 -> 点击刷新按钮
 
 
 ## 开发者资源
