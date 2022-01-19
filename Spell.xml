@@ -1,0 +1,88 @@
+﻿<Spells><List>	
+	<Spell Name="Spell_WaiMen">
+		<DisplayName>修仙</DisplayName>
+		<Desc>略微提高工作速度。</Desc>
+		<Template>Spell/main_texture_qingshen01</Template>
+		<Effects>
+			<li Name="LingAbsorbSpeed" AddP="5000000"/>灵气吸收速度加成
+			<li Name="NpcLingMaxValue" AddV="100000"/>提高灵气最大值
+			<li Name="NpcLingMaxValue" AddP="5"/>提高灵气最大%。
+			<li Name="DeepPracticeSpeedSpecialCoefficient" AddP="50"/>修炼速度加成
+			<li Name="PracticeRateAddPFromDan" AddP="5"/>瓶颈突破概率加成系数
+			<li Name="MindStateBaseValue" AddV="100"/>心境基础值
+			<li Name="SpeedOfMindStateCoefficient" AddP="-1"/>心境稳定程度
+			<li Name="WorldMapFlySpeedAddP" AddV="2000"/>历练飞行速度加层
+			<li Name="NpcFight_FabaoLingRecoverAddP" AddP="50"/>法宝灵气恢复速度加成
+			<li Name="NpcFight_FabaoMaxLingAddP" AddP="2"/>法宝灵气最大值加成
+			<li Name="NpcFight_FabaoPowerAddP" AddV="15"/>法宝威力加层
+			<li Name="NpcFight_FabaoPowerAddP" AddP="5"/>法宝威力加成%
+			<li Name="NpcFight_FabaoFlySpeedAddP" AddP="5"/>法宝飞行速度加成
+			<li Name="NpcFight_FabaoTurnSpeedAddP" AddP="5"/>法宝转向速度加成
+			<li Name="NpcFight_FabaoTrailingLengthAddP" AddP="5"/>法宝拖尾长度加成
+			<li Name="NpcFight_FabaoRepelResistanceAddV" AddV="5"/>法宝击退距离抗性
+			<li Name="NpcFight_FabaoRepelDistanceAddV" AddV="1"/>法宝击退距离加成
+			<li Name="NpcFight_ShieldConversionRate" AddP="5"/>护盾强度加值%
+			<li Name="NpcFight_ShieldConversionRateAddP" AddV="10"/>护盾强度加层
+			<li Name="NpcFight_SpellPowerAddP" AddP="12"/>术法伤害加成
+			<li Name="DanMake_YieldAddP" AddV="10000"/>丹药产量提升
+			<li Name="DanMake_SuccessRateAddV" AddV="100"/>丹药炼制成功率加值
+			<li Name="FabaoMake_QualityAddV" AddV="100"/>法宝炼制品质加值
+			<li Name="FabaoMake_SuccessRateAddV" AddV="100"/>法宝炼制成功率加值
+			<li Name="FabaoMake_LingInheritRateAddV" AddV="100"/>法宝炼制品质加成
+			<li Name="FabaoMake_TwelveRateChance" AddV="100"/>神器炼成基础几率
+			<li Name="NeckCountdownAddV" AddV="64800000"/>天劫推迟时间
+			<li Name="IntelligenceSkillEXPConstant" AddP="100"/>学习速度
+			<li Name="NiceDreamHappenPercent" AddP="50"/>美梦发生几率
+			<li Name="NightmareHappenPercent" AddP="-10"/>恶梦发生几率
+			<li Name="TreatmentExpectQuality" AddP="12"/>治疗预期效果
+			<li Name="TreatSuccessChance" AddP="12"/>治疗成功率
+			<li Name="MadeQualityAddValue" AddV="100"/>制作品质加值
+			<li Name="SmithingQualityAddValue" AddV="100"/>锻造品质加值
+			<li Name="HandworkQualityAddValue" AddV="100"/>手工品质加值
+			<li Name="TailoringQualityAddValue" AddV="100"/>缝制品质加值
+			<li Name="HappyConsumeConstant" AddP="-20"/>娱乐消耗速度加成
+			<li Name="FatigueConsumeConstant" AddP="-12"/>精力消耗
+			<li Name="FatigueRecoveryConstant" AddP="100"/>精力补充加成
+			<li Name="PracticeFoodConsumeConstant" AddP="-50"/>精元消耗速度加成
+                                	<li Name="PracticeFoodRecoveryConstant" AddP="1000"/>精元补充加成
+			<li Name="RecoveryPower" AddP="12"/>自然恢复力
+			<li Name="ComfyTMin" AddV="-9999"/>最低舒适温度
+			<li Name="ToleranceTMin" AddV="-9999"/>最低极限稳定
+			<li Name="ComfyTMax" AddV="9999"/>最高舒适温度
+			<li Name="ToleranceTMax" AddV="9999"/>最高极限稳定
+		</Effects>
+	</Spell>
+	<Spell Name="Spell_NeiMen">
+		<DisplayName>工具</DisplayName>
+		<Desc>略微提高修炼速度。</Desc>
+		<Template>Spell/main_texture_qingshen01</Template>
+		<Effects>
+			<li Name="GlobalEfficiency" AddP="12"/>全局工作速度
+			<li Name="MoveSpeed" AddP="12"/>移动速度
+			<li Name="PlantHarvestYieldEfficiency" AddP="12"/>收获技巧
+			<li Name="ButcherYieldEfficiency" AddP="12"/>屠宰技巧
+			<li Name="IntelligenceSkillEXPConstant" AddP="20"/>学习速度
+			<li Name="NiceDreamHappenPercent" AddP="50"/>美梦发生几率
+			<li Name="NightmareHappenPercent" AddP="-10"/>恶梦发生几率
+			<li Name="SmithingInjuredChance" AddP="-12"/>锻造受伤几率
+			<li Name="MiningInjuredChance" AddP="-12"/>采光受伤几率
+			<li Name="ConstructInjuredChance" AddP="-12"/>建造受伤几率
+			<li Name="TreatmentExpectQuality" AddP="12"/>治疗预期效果
+			<li Name="TreatSuccessChance" AddP="12"/>治疗成功率
+			<li Name="MadeQualityAddValue" AddV="1000"/>制作品质加值
+			<li Name="SmithingQualityAddValue" AddV="1000"/>锻造品质加值
+			<li Name="HandworkQualityAddValue" AddV="1000"/>手工品质加值
+			<li Name="TailoringQualityAddValue" AddV="1000"/>缝制品质加值
+			<li Name="NutritionConsumeConstant" AddP="-10"/>食物消耗
+			<li Name="WaterConsumeConstant" AddP="-10"/>饮水消耗
+			<li Name="HappyConsumeConstant" AddP="-12"/>娱乐消耗速度加成
+			<li Name="FatigueConsumeConstant" AddP="-12"/>精力消耗
+			<li Name="FatigueRecoveryConstant" AddP="12"/>精力补充加成
+			<li Name="RecoveryPower" AddP="12"/>自然恢复力
+			<li Name="ComfyTMin" AddV="-9999"/>最低舒适温度
+			<li Name="ToleranceTMin" AddV="-9999"/>最低极限稳定
+			<li Name="ComfyTMax" AddV="9999"/>最高舒适温度
+			<li Name="ToleranceTMax" AddV="9999"/>最高极限稳定
+		</Effects>
+	</Spell>
+</List>	</Spells>
