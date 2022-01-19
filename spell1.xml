@@ -1,0 +1,40 @@
+<Spells><List>	
+	<Spell Name="Spell_WaiMen">
+		<DisplayName>修仙</DisplayName>
+		<Desc>太一修炼符。</Desc>
+		<Template>Spell/main_texture_qingshen01</Template>
+		<Effects>
+			<li Name="DeepPracticeSpeedSpecialCoefficient" AddP="10"/>修炼速度加成
+			<li Name="MindStateBaseValue" AddV="100"/>心境基础值
+			<li Name="WorldMapFlySpeedAddP" AddV="2000"/>历练飞行速度加成
+			<li Name="NpcFight_FabaoPowerAddP" AddV="15"/>法宝威力加成
+			<li Name="NpcFight_FabaoPowerAddP" AddP="5"/>法宝威力加成
+			<li Name="NpcFight_FabaoFlySpeedAddP" AddP="5"/>法宝飞行速度加成
+			<li Name="NpcFight_ShieldConversionRate" AddP="5"/>护盾强度加值
+			<li Name="NpcFight_ShieldConversionRateAddP" AddV="10"/>护盾强度加层
+			<li Name="NpcFight_SpellPowerAddP" AddP="12"/>术法伤害加成
+			<li Name="DanMake_YieldAddP" AddV="1000"/>丹药产量提升
+			<li Name="DanMake_SuccessRateAddV" AddV="100"/>丹药炼制成功率加值
+			<li Name="FabaoMake_QualityAddV" AddV="100"/>法宝炼制品质加值
+			<li Name="FabaoMake_SuccessRateAddV" AddV="100"/>法宝炼制成功率加值
+			<li Name="FabaoMake_LingInheritRateAddV" AddV="100"/>法宝炼制品质加成
+			<li Name="FabaoMake_TwelveRateChance" AddV="100"/>神器炼成基础几率
+			<li Name="IntelligenceSkillEXPConstant" AddP="100"/>学习速度
+		</Effects>
+	</Spell>
+	<Spell Name="Spell_NeiMen">
+		<DisplayName>外门</DisplayName>
+		<Desc>太一外门符。</Desc>
+		<Template>Spell/main_texture_qingshen01</Template>
+		<Effects>
+			<li Name="GlobalEfficiency" AddP="5"/>全局工作速度
+			<li Name="MoveSpeed" AddP="5"/>移动速度
+			<li Name="PlantHarvestYieldEfficiency" AddP="5"/>收获技巧
+			<li Name="ButcherYieldEfficiency" AddP="5"/>屠宰技巧
+			<li Name="MadeQualityAddValue" AddV="20"/>制作品质加值
+			<li Name="SmithingQualityAddValue" AddV="20"/>锻造品质加值
+			<li Name="HandworkQualityAddValue" AddV="20"/>手工品质加值
+			<li Name="TailoringQualityAddValue" AddV="20"/>缝制品质加值
+		</Effects>
+	</Spell>
+</List>	</Spells>
